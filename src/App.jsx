@@ -26,15 +26,15 @@ export default function App() {
 
       <Suspense fallback={<h1>ЗАГРУЖАЕМ МАРШРУТ...</h1>}>
       
-          <Route path="/" exact>
-            <HomeView />
+          <Route path="/" element={<HomeView />}>
+            
           </Route>
 
           {/* <Route path="/authors">
             <AuthorsView />
           </Route> */}
 
-          <Route path="/books" exact>
+          <Route path="/books" element={<BooksView />}>
             <BooksView />
           </Route>
 

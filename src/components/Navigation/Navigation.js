@@ -5,7 +5,6 @@ export default function Navigation() {
   return (
     <nav>
       <NavLink
-        exact
         to="/"
         className={styles.link}
         activeClassName={styles.activeLink}
