@@ -1,22 +1,23 @@
+import Navigation from 'components/Navigation/Navigation';
 import { lazy, Suspense } from 'react';
-import {  Route } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import AppBar from './components/AppBar/AppBar';
 import Container from './components/Container/Container';
 
 const HomeView = lazy(() =>
-  import('./views/HomeView.js' /* webpackChunkName: "home-view" */),
+  import('./views/HomeView.js' /* webpackChunkName: "home-view" */)
 );
 // const AuthorsView = lazy(() =>
 //   import('./views/AuthorsView.js' /* webpackChunkName: "authors-view" */),
 // );
 const BooksView = lazy(() =>
-  import('./views/BooksView.js' /* webpackChunkName: "books-view" */),
+  import('./views/BooksView.js' /* webpackChunkName: "books-view" */)
 );
 const BookDetailsView = lazy(() =>
-  import('./views/BookDetailsView.js' /* webpackChunkName: "book-view" */),
+  import('./views/BookDetailsView.js' /* webpackChunkName: "book-view" */)
 );
 const NotFoundView = lazy(() =>
-  import('./views/NotFoundView.js' /* webpackChunkName: "404-view" */),
+  import('./views/NotFoundView.js' /* webpackChunkName: "404-view" */)
 );
 
 export default function App() {
@@ -25,27 +26,20 @@ export default function App() {
       <AppBar />
 
       <Suspense fallback={<h1>ЗАГРУЖАЕМ МАРШРУТ...</h1>}>
-      
-          <Route path="/" element={<HomeView />}>
-            
-          </Route>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<HomeView />} />
 
           {/* <Route path="/authors">
             <AuthorsView />
           </Route> */}
 
-          <Route path="/books" element={<BooksView />}>
-            <BooksView />
-          </Route>
+          <Route path="/books" element={<BooksView />} />
 
-          <Route path="/books/:slug">
-            <BookDetailsView />
-          </Route>
+          <Route path="/books/:slug" element={<BookDetailsView />} />
 
-          <Route>
-            <NotFoundView />
-          </Route>
-        
+          <Route path="*" element={<NotFoundView />} />
+        </Routes>
       </Suspense>
     </Container>
   );

@@ -2,12 +2,17 @@ import { NavLink } from 'react-router-dom';
 import styles from './Navigation.module.css';
 
 export default function Navigation() {
+  
+  let activeClassName = styles.activLink
+
   return (
     <nav>
       <NavLink
         to="/"
-        className={styles.link}
-        activeClassName={styles.activeLink}
+        
+        className={({ isActive }) =>
+        isActive ? activeClassName : undefined
+      }
       >
         Главная
       </NavLink>
@@ -22,8 +27,9 @@ export default function Navigation() {
 
       <NavLink
         to="/books"
-        className={styles.link}
-        activeClassName={styles.activeLink}
+        className={({ isActive }) =>
+        isActive ? activeClassName : undefined
+      }
       >
         Книги
       </NavLink>
