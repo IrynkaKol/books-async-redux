@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useRouteMatch, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import slugify from 'slugify';
 import { useSelector, useDispatch } from 'react-redux';
 import { booksOperations, booksSelectors } from 'redux/books';
@@ -9,7 +9,7 @@ const makeSlug = string => slugify(string, { lower: true });
 
 export default function BooksView() {
   const location = useLocation();
-  const { url } = useRouteMatch();
+  
   const dispatch = useDispatch();
   const books = useSelector(booksSelectors.getBooks);
 
@@ -25,12 +25,12 @@ export default function BooksView() {
             <li key={book.id}>
               <Link
                 to={{
-                  pathname: `${url}/${makeSlug(`${book.title} ${book.id}`)}`,
-                  state: {
-                    from: {
-                      location,
-                      label: 'Назад к всем книгами',
-                    },
+                  pathname: `/books/${book.id}`,
+                }}
+                state={{
+                  from: {
+                    location,
+                    label: 'Назад к всем книгами',
                   },
                 }}
               >
