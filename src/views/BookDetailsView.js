@@ -1,33 +1,24 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import PageHeading from '../components/PageHeading/PageHeading';
 import * as bookShelfAPI from '../services/bookshelf-api';
 
+const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
+
 export default function BookDetailsView() {
-  const location = useLocation();
-  const { slug } = useParams();
-  const bookId = slug.match(/[a-z0-9]+$/)[0];
+  const { id } = useParams();
   const [book, setBook] = useState(null);
 
   useEffect(() => {
-    bookShelfAPI.fetchBookById(bookId).then(setBook);
-  }, [bookId]);
+    bookShelfAPI.fetchBookById(id).then(setBook);
+  }, [id]);
 
   return (
     <>
-      <PageHeading text={`Книга ${slug}`} />
-
       {book && (
         <>
-          <Link to={location?.state?.from?.location ?? '/books'}>
-            {location?.state?.from?.label ?? 'Назад'}
-          </Link>
-          <hr />
-
-          <img src={book.imgUrl} alt={book.title} />
-          <h2>{book.title}</h2>
-          <p>Автор: {book.author.name}</p>
-          <p>{book.descr}</p>
+          <PageHeading text={`Фільм ${book.title}`} />
+          <img src={BASE_IMG_URL + book.poster_path} alt={book.title} />
         </>
       )}
     </>

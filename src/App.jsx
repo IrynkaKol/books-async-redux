@@ -1,6 +1,5 @@
-import Navigation from 'components/Navigation/Navigation';
 import { lazy, Suspense } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import AppBar from './components/AppBar/AppBar';
 import Container from './components/Container/Container';
 
@@ -26,18 +25,13 @@ export default function App() {
       <AppBar />
 
       <Suspense fallback={<h1>ЗАГРУЖАЕМ МАРШРУТ...</h1>}>
-        <Navigation />
         <Routes>
           <Route path="/" element={<HomeView />} />
-
           {/* <Route path="/authors">
             <AuthorsView />
           </Route> */}
-
           <Route path="/books" element={<BooksView />} />
-
-          <Route path="/books/:slug" element={<BookDetailsView />} />
-
+          <Route path="/books/:id" element={<BookDetailsView />} />
           <Route path="*" element={<NotFoundView />} />
         </Routes>
       </Suspense>
