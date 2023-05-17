@@ -7,7 +7,7 @@ export default function Navigation() {
       <NavLink
         to="/"
         className={styles.link}
-        activeClassName={styles.activeLink}
+       
       >
         Главная
       </NavLink>
@@ -23,7 +23,7 @@ export default function Navigation() {
       <NavLink
         to="/books"
         className={styles.link}
-        activeClassName={styles.activeLink}
+        
       >
         Книги
       </NavLink>
