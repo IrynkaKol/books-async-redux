@@ -5,7 +5,7 @@ import { booksOperations } from 'redux/books';
 import { getBooks } from 'redux/books/booksSelectors';
 import PageHeading from 'components/PageHeading/PageHeading';
 
-const makeSlug = string => string.split(' ').join('-').toLowerCase();
+// const makeSlug = string => string.split(' ').join('-').toLowerCase();
 
 export default function BooksView() {
   const location = useLocation();
